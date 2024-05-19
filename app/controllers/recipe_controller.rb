@@ -26,7 +26,7 @@ class RecipeController < ApplicationController
     if params[:search_ingredients].present?
       recipes = recipes.search_ingredients(params[:search_ingredients])
     end
-    recipes = recipes.limit(20)
+    recipes = recipes.then(&paginate)
     render json: recipes
   end
 end
